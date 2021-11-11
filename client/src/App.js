@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-// const CocktailCard = props => {
-//   <img src={props.cocktailsData.drinks[0].strDrinkThumb} alt="" height="200px" width="200px" />
-// }
+const CocktailCard = props => {
+  return (
+    <>
+      <h1>{props.cocktailsData.drinks[0].strDrink}</h1>
+      <img src={props.cocktailsData.drinks[0].strDrinkThumb} alt="" height="200px" width="200px" />
+      <p>{props.cocktailsData.drinks[0].strInstructions}</p>
+    </>
+  )
+}
 
 const App = () => {
   const [query, setQuery] = useState('');
@@ -25,8 +31,7 @@ const App = () => {
       <input value={query} onChange={e => setQuery(e.target.value)} />
       <button onClick={getCocktail}>Find Cocktail</button><br/>
 
-      {/* {cocktailsData ? <CocktailCard cocktailsData={cocktailsData} /> : null} */}
-      {cocktailsData ? <img src={cocktailsData.drinks[0].strDrinkThumb} alt="" height="200px" width="200px" /> : null}
+      {cocktailsData ? <CocktailCard cocktailsData={cocktailsData} /> : null}
     </div>
   );
 }
