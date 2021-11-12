@@ -1,4 +1,4 @@
-import Favorite from "./Favorite";
+// import Favorite from "./Favorite";
 import Ingredients from "./Ingredients"
 
 const CocktailCard = ({ cocktailsData }) => {
