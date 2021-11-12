@@ -27,11 +27,11 @@ const Ingredients = ({ cocktailsData }) => {
       
   return(
     <>
-      <ul>
-       {ingredientsArr.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
+      <ul className="card__list">
+       {ingredientsArr.map((ingredient, index) => <li className="card__list-item" key={index}>{ingredient}</li>)}
       </ul>
-      <ul>
-       {measuresArr.map((measure, index) => <li key={index}>{measure}</li>)}
+      <ul className="card__list">
+       {measuresArr.map((measure, index) => <li className="card__list-item" key={index}>{measure}</li>)}
       </ul>
     </>
   )

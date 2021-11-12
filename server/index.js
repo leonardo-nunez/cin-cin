@@ -6,6 +6,7 @@ const axios = require('axios');
 
 app.get('/api/cocktail/:query', (req, res) => {
   const { query } = req.params
+  console.log(query);
   var config = {
     method: 'get',
     url: 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + query,

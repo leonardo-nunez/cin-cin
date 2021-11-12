@@ -11,7 +11,7 @@ const Favorite = () => {
 
   return(
     <>
-      <div class="heart-like-button" onClick={hearttoggle}></div>
+      <div className="heart-like-button" onClick={hearttoggle}></div>
     </>
   )
 }
