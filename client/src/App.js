@@ -14,28 +14,21 @@ const App = () => {
   // },[cocktailsData])
 
   const getCocktail = async (e) => {
-    e.preventDefault();
-      if(!query) {
-        setErrorMessage('empty');
-        return
-      }
+      e.preventDefault();
+      setErrorMessage('')
       const response = await fetch('http://localhost:5000/api/cocktail/' + query)
       const body = await response.json();
+
       if(!body.drinks) {
-        setErrorMessage('404');
+        setErrorMessage('No cocktail with that name in our database. Try again.');
         return
       }
       setCocktailsData(body)
       setQuery('')
   };
   const rendercocktailsCard = () => {
-    if(errorMessage === 'empty') {
-      setErrorMessage('')
-      return <p className="error">Field is empty. Try again.</p>;
-    }
-    if(errorMessage === '404') {
-      setErrorMessage('')
-      return <p className="error">No cocktail with that name in our database. Try again.</p>;
+    if(errorMessage) { 
+      return <div className="error-wrapper"><p className="error">{errorMessage}</p></div>;
     }
     if(cocktailsData) {
       return <CocktailCard cocktailsData={cocktailsData} />
