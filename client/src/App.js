@@ -57,6 +57,3 @@ const App = () => {
 
 
 export default App;
-
-// 'No cocktail with that name in our database. Try again.'
-// 'Field is empty. Try again.'
