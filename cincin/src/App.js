@@ -7,22 +7,17 @@ import cocktailNameList from './assets/cocktailNameList';
 // const Navbar
 
 const App = () => {
-  const [query, setQuery] = useState('');
+  const [value, setValue] = useState(cocktailNameList[0]);
+  const [inputValue, setInputValue] = useState('');
   const [cocktailsData, setCocktailsData] = useState();
   const [errorMessage, setErrorMessage] = useState('');
 
-  // useEffect(() => {
-  //   return cocktailsData ? console.log(cocktailsData.drinks[0].strDrinkThumb) : null
-  // },[cocktailsData])
-
-  const getCocktail = async (e) => {
-    e.preventDefault();
-    if (!e.target.innerHTML) return;
-    const chosenCocktail = e.target.innerHTML;
+  const getCocktail = async () => {
+    // e.preventDefault();
+    // if (!e.target.innerHTML) return;
+    // const chosenCocktail = e.target.innerHTML;
     setErrorMessage('');
-    const response = await fetch(
-      'http://localhost:5000/api/cocktail/' + chosenCocktail
-    );
+    const response = await fetch('http://localhost:5000/api/cocktail/' + value);
     const body = await response.json();
 
     if (!body.drinks) {
@@ -30,7 +25,7 @@ const App = () => {
       return;
     }
     setCocktailsData(body);
-    setQuery('');
+    setValue('');
   };
   const rendercocktailsCard = () => {
     if (errorMessage) {
@@ -57,6 +52,23 @@ const App = () => {
       <div className="main__form-wrapper">
         <form className="main__form" onSubmit={getCocktail}>
           <Autocomplete
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+              getCocktail();
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+            id="controllable-states-demo"
+            options={cocktailNameList}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Find Cocktail" />
+            )}
+          />
+          {/* <Autocomplete
             disablePortal
             id="main__Autocomplete"
             options={cocktailNameList}
@@ -66,7 +78,7 @@ const App = () => {
             )}
             onChange={getCocktail}
             // onChange={(e) => setQuery(e.target.innerHTML)}
-          />
+          /> */}
           {/* <input
             className="main__input"
             required
