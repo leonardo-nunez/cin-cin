@@ -1,45 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import CocktailCard from './components/CocktailCard';
 import { Autocomplete, TextField } from '@mui/material';
 import cocktailNameList from './assets/cocktailNameList';
 
-// const Navbar
-
 const App = () => {
-  const [value, setValue] = useState(cocktailNameList[0]);
+  const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
-  const [cocktailsData, setCocktailsData] = useState();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [cocktailsData, setCocktailsData] = useState(null);
 
-  const getCocktail = async () => {
-    // e.preventDefault();
-    // if (!e.target.innerHTML) return;
-    // const chosenCocktail = e.target.innerHTML;
-    setErrorMessage('');
-    const response = await fetch('http://localhost:5000/api/cocktail/' + value);
-    const body = await response.json();
-
-    if (!body.drinks) {
-      setErrorMessage('No cocktail with that name in our database. Try again.');
-      return;
-    }
-    setCocktailsData(body);
-    setValue('');
-  };
-  const rendercocktailsCard = () => {
-    if (errorMessage) {
-      return (
-        <div className="error-wrapper">
-          <p className="error">{errorMessage}</p>
-        </div>
+  useEffect(() => {
+    const getCocktail = async () => {
+      const response = await fetch(
+        'http://localhost:5000/api/cocktail/' + value
       );
-    }
-    if (cocktailsData) {
-      return <CocktailCard cocktailsData={cocktailsData} />;
-    }
-    // cocktailsData ? <CocktailCard cocktailsData={cocktailsData} errorMessage={errorMessage} /> : null;
-  };
+      const body = await response.json();
+      body.drinks && setCocktailsData(body);
+    };
+
+    value && getCocktail();
+  }, [value]);
+
+  const rendercocktailsCard = () =>
+    cocktailsData && <CocktailCard cocktailsData={cocktailsData} />;
 
   return (
     <div className="main">
@@ -50,47 +33,25 @@ const App = () => {
         <h1 className="main__title">Cin Cin</h1>
       </div>
       <div className="main__form-wrapper">
-        <form className="main__form" onSubmit={getCocktail}>
-          <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-              getCocktail();
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={cocktailNameList}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Find Cocktail" />
-            )}
-          />
-          {/* <Autocomplete
-            disablePortal
-            id="main__Autocomplete"
-            options={cocktailNameList}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Find Cocktail" />
-            )}
-            onChange={getCocktail}
-            // onChange={(e) => setQuery(e.target.innerHTML)}
-          /> */}
-          {/* <input
-            className="main__input"
-            required
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          /> */}
-          {/* <br />
-          <button className="main__button">Find Cocktail</button>
-          <br /> */}
-        </form>
+        <Autocomplete
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          inputValue={inputValue}
+          onInputChange={(event, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
+          id="controllable-states-demo"
+          options={cocktailNameList}
+          sx={{ width: 250 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Find Cocktail" />
+          )}
+        />
       </div>
       {rendercocktailsCard()}
+      <div className="footer">.</div>
     </div>
   );
 };

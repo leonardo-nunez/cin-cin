@@ -11,15 +11,18 @@
   --dark-grey: #383737;
   --white-transparent: #eeeeee;
   --yellow: #fabc41;
-  --grey-gradient: linear-gradient(
-    121deg,
-    rgb(172, 172, 172) 0%,
-    rgb(63, 63, 63) 50%
-  );
-  --yellow-gradient: linear-gradient(
-    121deg,
-    rgba(225, 176, 97, 1) 0%,
-    rgba(173, 134, 72, 1) 50%
+  --background-gradient: linear-gradient(
+    180deg,
+    hsl(330deg 19% 18%) 0%,
+    hsl(330deg 16% 24%) 21%,
+    hsl(330deg 15% 29%) 30%,
+    hsl(329deg 13% 35%) 39%,
+    hsl(329deg 10% 40%) 46%,
+    hsl(332deg 8% 46%) 54%,
+    hsl(330deg 6% 51%) 61%,
+    hsl(333deg 4% 57%) 69%,
+    hsl(330deg 2% 62%) 79%,
+    hsl(0deg 0% 67%) 100%
   );
 }
 
@@ -33,11 +36,7 @@
 
 .main {
   position: relative;
-  background-image: linear-gradient(
-    121deg,
-    rgb(56, 38, 47) 0%,
-    rgb(172, 172, 172) 50%
-  );
+  background-image: var(--background-gradient);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +64,7 @@
   width: 1px;
   height: 100vh;
 
-  border-left: 10px solid #d5854b;
+  border-left: 10px solid var(--orange);
   filter: drop-shadow(3px 5px 8px rgba(0, 0, 0, 0.5));
   z-index: 1;
 }
@@ -82,7 +81,7 @@
 }
 
 .main__title-wrapper {
-  background: rgba(211, 210, 210, 0.92);
+  background: rgba(226, 226, 226, 0.92);
   border: 5px solid #9d235e;
   box-sizing: border-box;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
@@ -102,66 +101,29 @@
 }
 
 .main__form-wrapper {
-  background: rgba(170, 167, 167, 0.92);
-  border: 5px solid #d5854b;
+  background: rgba(211, 207, 207, 0.92);
+  border: 5px solid var(--orange);
   box-sizing: border-box;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
   border-radius: 19px;
-  padding: 16px 16px 0px 16px;
+  padding: 16px;
   margin: 1rem;
   z-index: 2;
 }
 
-.main__form {
-  display: flex;
-  flex-direction: column;
-}
-.main__input {
-  width: 211px;
-  height: 37px;
-  left: 90px;
-  top: 168px;
-  padding: 10px;
-  background: #eeeeee;
-  border-radius: 10px;
-  border-style: none;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 23px;
-  box-shadow: inset 3px 5px 8px rgba(0, 0, 0, 0.5);
-  color: #000000;
+.Mui-focused {
+  color: rgba(0, 0, 0, 0.87) !important;
 }
 
-.main__input:focus {
-  outline-color: var(--orange);
+.MuiSvgIcon-root {
+  color: var(--orange);
 }
 
-.main__button {
-  position: relative;
-  width: 211px;
-  height: 37px;
-  background: #eeeeee;
-  border-radius: 10px;
-  border-style: none;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: 0.28em;
-  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
-  color: #000000;
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--orange) !important;
 }
-
-.main__button:hover {
-  background-color: #bebebe;
-}
-.main__button:active {
-  background-color: #bebebe;
-  position: relative;
-  top: 1px;
+.css-9e5uuu-MuiPaper-root-MuiAutocomplete-paper {
+  background-color: rgba(214, 211, 211, 0.95) !important;
 }
 
 .card {
@@ -203,7 +165,6 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 37px;
-  /* identical to box height */
   letter-spacing: 0.28em;
   color: #efeded;
   margin: 25px 25px 35px 25px;
@@ -272,27 +233,12 @@
   color: #000000;
 }
 
-.error {
-  padding: 10px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-
-  color: #000000;
+.footer {
+  visibility: hidden;
+  font-size: 1px;
 }
 
-.error-wrapper {
-  background: rgba(211, 210, 210, 0.92);
-  border: 5px solid #9d235e;
-  box-sizing: border-box;
-  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 19px;
-  padding: 0 12px;
-}
-
-.heart-like-button {
+/* .heart-like-button {
   position: relative;
   width: 160px;
   height: 130px;
@@ -343,4 +289,4 @@
   100% {
     transform: scale(1);
   }
-}
+} */
