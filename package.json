@@ -8,8 +8,8 @@
     "server": "nodemon index.js",
     "client": "npm start --prefix cincin",
     "clientBuild": "npm serve --prefix cincin",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "concurrently \"npm run server\" \"npm run clientBuild\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "concurrently \"npm run server\" \"npm run clientBuild\""
   },
   "keywords": [],
   "author": "",
