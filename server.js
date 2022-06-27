@@ -3,9 +3,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 const axios = require('axios');
 
+// import cocktailNameList from './cincin/src/assets/cocktailNameList.js';
+
 app.get('/api/cocktail/:query', (req, res) => {
   const { query } = req.params;
-  console.log(query);
+  console.log('A ' + query + ' will be served shortly.');
   var config = {
     method: 'get',
     url: 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + query,
@@ -121,7 +123,11 @@ app.get('/api/all', (_req, res) => {
     res.send(cocktailNamesArr);
   };
 
+  // if (!cocktailNameList) {
   fetchNames();
+  // } else {
+  //   res.send('Cocktail list is already available');
+  // }
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
