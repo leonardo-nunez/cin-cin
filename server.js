@@ -3,7 +3,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 const axios = require('axios');
 
+const path = require('path');
+
 // import cocktailNameList from './cincin/src/assets/cocktailNameList.js';
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.get('/api/cocktail/:query', (req, res) => {
   const { query } = req.params;
@@ -15,17 +19,6 @@ app.get('/api/cocktail/:query', (req, res) => {
       Authorization: '1',
     },
   };
-
-  if (process.env.NODE_ENV === 'production') {
-    // Exprees will serve up production assets
-    app.use(express.static('client/build'));
-
-    // Express serve up index.html file if it doesn't recognize route
-    const path = require('path');
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-  }
 
   res.header('Access-Control-Allow-Origin', '*');
 
@@ -139,6 +132,10 @@ app.get('/api/all', (_req, res) => {
   // } else {
   //   res.send('Cocktail list is already available');
   // }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
