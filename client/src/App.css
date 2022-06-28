@@ -155,8 +155,7 @@
 }
 
 .card__title--main {
-  width: 252px;
-  height: 38px;
+  max-width: 252px;
   left: 69px;
   top: 551px;
   text-align: center;
@@ -168,6 +167,7 @@
   letter-spacing: 0.28em;
   color: #efeded;
   margin: 25px 25px 35px 25px;
+  overflow-wrap: break-word;
 }
 
 .card__title {
