@@ -4,7 +4,7 @@
 
 A simple but good looking cocktail recipe app.
 
-During "hackday" at &lt/SALT&gt we had to create our first full-stack app from scratch in 24 hours.
+During "hackday" at SALT we had to create our first full-stack app from scratch in 24 hours.
 
 The external API that I use to get the data is: http://www.thecocktaildb.com/
 
