@@ -101,7 +101,6 @@ const cocktailNameList = [
   'English Rose Cocktail',
   'Elderflower Caipirinha',
   'Egg-Nog - Classic Cooked',
-  "Empellón Cocina's Fat-Washed Mezcal",
   'Frosé',
   'Frappé',
   'Foxy Lady',
