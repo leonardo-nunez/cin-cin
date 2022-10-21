@@ -4,10 +4,14 @@ import CocktailCard from './components/CocktailCard';
 import { Autocomplete, TextField } from '@mui/material';
 import cocktailNameList from './assets/cocktailNameList';
 
-const production = 'https://cin-cin.herokuapp.com/';
-const development = 'http://localhost:5000';
+const isLocalhost = () => {
+  const url = window.location.href;
+  return url.includes('localhost') || url.includes('127.0.0.1');
+};
 
-const baseUrl = process.env.NODE_ENV ? production : development;
+const baseUrl = isLocalhost()
+  ? 'http://localhost:5000'
+  : 'https://cin-cin.herokuapp.com/';
 
 const App = () => {
   const [value, setValue] = useState(null);
