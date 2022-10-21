@@ -4,14 +4,14 @@ import CocktailCard from './components/CocktailCard';
 import { Autocomplete, TextField } from '@mui/material';
 import cocktailNameList from './assets/cocktailNameList';
 
-const isLocalhost = () => {
-  const url = window.location.href;
-  return url.includes('localhost') || url.includes('127.0.0.1');
-};
+// const isLocalhost = () => {
+//   const url = window.location.href;
+//   return url.includes('localhost') || url.includes('127.0.0.1');
+// };
 
-const baseUrl = isLocalhost()
-  ? 'http://localhost:5000'
-  : 'https://cin-cin.herokuapp.com/';
+// const baseUrl = isLocalhost()
+//   ? 'http://localhost:5000'
+//   : 'https://cin-cin.herokuapp.com/';
 
 const App = () => {
   const [value, setValue] = useState(null);
@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     const getCocktail = async () => {
-      const response = await fetch(baseUrl + value);
+      const response = await fetch('https://cin-cin.herokuapp.com/' + value);
       const body = await response.json();
       body.drinks && setCocktailsData(body);
     };
