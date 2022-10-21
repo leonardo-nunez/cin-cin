@@ -4,6 +4,11 @@ import CocktailCard from './components/CocktailCard';
 import { Autocomplete, TextField } from '@mui/material';
 import cocktailNameList from './assets/cocktailNameList';
 
+const production = 'https://cin-cin.herokuapp.com/';
+const development = 'http://localhost:5000';
+
+const baseUrl = process.env.NODE_ENV ? production : development;
+
 const App = () => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
@@ -11,9 +16,7 @@ const App = () => {
 
   useEffect(() => {
     const getCocktail = async () => {
-      const response = await fetch(
-        'http://localhost:5000/api/cocktail/' + value
-      );
+      const response = await fetch(baseUrl + value);
       const body = await response.json();
       body.drinks && setCocktailsData(body);
     };
