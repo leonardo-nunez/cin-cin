@@ -4,10 +4,11 @@ import CocktailCard from './components/CocktailCard';
 import { Autocomplete, TextField } from '@mui/material';
 import cocktailNameList from './assets/cocktailNameList';
 
-const production = 'https://cin-cin.herokuapp.com/';
+const production = 'https://cin-cin.onrender.com/';
 const development = 'http://localhost:5000/';
 
-const baseUrl = process.env.NODE_ENV ? production : development;
+const baseUrl =
+  process.env.NODE_ENV === 'development' ? development : production;
 
 const App = () => {
   const [value, setValue] = useState(null);
@@ -28,14 +29,14 @@ const App = () => {
     cocktailsData && <CocktailCard cocktailsData={cocktailsData} />;
 
   return (
-    <div className="main">
-      <div className="background-line__left" />
-      <div className="background-line__center" />
-      <div className="background-line__right" />
-      <div className="main__title-wrapper">
-        <h1 className="main__title">Cin Cin</h1>
+    <div className='main'>
+      <div className='background-line__left' />
+      <div className='background-line__center' />
+      <div className='background-line__right' />
+      <div className='main__title-wrapper'>
+        <h1 className='main__title'>Cin Cin</h1>
       </div>
-      <div className="main__form-wrapper">
+      <div className='main__form-wrapper'>
         <Autocomplete
           value={value}
           onChange={(event, newValue) => {
@@ -45,16 +46,19 @@ const App = () => {
           onInputChange={(event, newInputValue) => {
             setInputValue(newInputValue);
           }}
-          id="controllable-states-demo"
+          id='controllable-states-demo'
           options={cocktailNameList}
           sx={{ width: 250 }}
           renderInput={(params) => (
-            <TextField {...params} label="Find Cocktail" />
+            <TextField
+              {...params}
+              label='Find Cocktail'
+            />
           )}
         />
       </div>
       {rendercocktailsCard()}
-      <div className="footer">.</div>
+      <div className='footer'>.</div>
     </div>
   );
 };
