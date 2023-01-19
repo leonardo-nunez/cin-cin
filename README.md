@@ -29,3 +29,29 @@ There is an about page and a favorites feature in the code that are not used. Th
 In the figma screenshot below you can also see a second page where you can see all the cocktails in alphabetical order. That page wasn't really needed after I changed the search bar for an autocomplete input component.
 
 ![Figma Screenshot](https://github.com/leonardo-nunez/cin-cin/blob/main/client/src/assets/cincin-figma.png?raw=true)
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/leonardo-nunez/cin-cin
+```
+
+Go to the project directory
+
+```bash
+  cd cin-cin
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
